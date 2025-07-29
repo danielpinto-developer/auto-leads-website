@@ -3,14 +3,10 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import ladyImage from "images/lady.jpg";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import HeaderBase, {
-  NavLinks,
-  NavLink,
-  PrimaryLink,
-} from "components/headers/light.js";
 import { SectionHeading } from "components/misc/Headings.js";
 import { SectionDescription } from "components/misc/Typography.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
+import SimpleHeader from "components/headers/light.js";
 import {
   Container,
   ContentWithVerticalPadding,
@@ -19,7 +15,7 @@ import { ReactComponent as CheckboxIcon } from "feather-icons/dist/icons/check-c
 import { ReactComponent as QuotesLeftIconBase } from "images/quotes-l.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "images/dot-pattern.svg";
 
-const Header = tw(HeaderBase)`max-w-none`;
+const Header = tw(SimpleHeader)`max-w-none`;
 const Row = tw.div`flex flex-col lg:flex-row justify-between items-center lg:pt-16 max-w-screen-2xl mx-auto sm:px-8`;
 const Column = tw.div``;
 const TextColumn = tw(
@@ -73,26 +69,9 @@ export default ({
   },
 }) => {
   const buttonRoundedCss = buttonRounded && tw`rounded-full`;
-  const navLinks = [
-    <NavLinks key={1}>
-      <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Blog</NavLink>
-      <NavLink href="/#">Pricing</NavLink>
-      <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#">Testimonials</NavLink>
-    </NavLinks>,
-    <NavLinks key={2}>
-      <NavLink href="/#" tw="lg:ml-12!">
-        Login
-      </NavLink>
-      <PrimaryLink css={buttonRoundedCss} href="/#">
-        Sign Up
-      </PrimaryLink>
-    </NavLinks>,
-  ];
   return (
     <>
-      <Header links={navLinks} />
+      <SimpleHeader />
       <Container>
         <ContentWithVerticalPadding>
           <Row>
