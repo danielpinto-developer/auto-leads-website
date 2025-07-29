@@ -33,15 +33,15 @@ export default ({
   stats = [
     {
       key: "Familias",
-      value: "2500+",
+      value: "+2500",
     },
     {
       key: "Ahorros",
-      value: "$100M+",
+      value: "$+100M",
     },
     {
       key: "Opciones",
-      value: "30+",
+      value: "+30",
     },
   ],
 }) => {
