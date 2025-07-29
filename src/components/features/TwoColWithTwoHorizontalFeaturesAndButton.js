@@ -1,16 +1,15 @@
 import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
-import { css } from "styled-components/macro";
 import {
   SectionHeading,
   Subheading as SubheadingBase,
 } from "components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
 import TeamIllustrationSrc from "images/team-illustration-2.png";
-import { ReactComponent as SvgDotPattern } from "images/dot-pattern.svg";
 
-const Container = tw.div`relative`;
+const OuterContainer = tw.div`overflow-x-hidden bg-white`; // Prevent scroll leak
+const Container = tw.div`relative px-4`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-8 md:py-12 items-center`;
 const Column = tw.div`w-full max-w-md mx-auto md:max-w-none md:mx-0`;
 const ImageColumn = tw(Column)`md:w-6/12 flex-shrink-0 relative`;
@@ -22,14 +21,11 @@ const TextColumn = styled(Column)((props) => [
 ]);
 
 const Image = styled.img((props) => [
+  tw`w-full max-w-xs sm:max-w-sm md:max-w-md`,
   props.imageRounded && tw`rounded`,
   props.imageBorder && tw`border`,
   props.imageShadow && tw`shadow`,
 ]);
-
-const DecoratorBlob = tw(
-  SvgDotPattern
-)`w-20 h-20 absolute right-0 bottom-0 transform translate-x-1/2 translate-y-1/2 fill-current text-primary-500 -z-10`;
 
 const TextContent = tw.div`text-center md:text-left`;
 const Subheading = tw(SubheadingBase)`text-center md:text-left`;
@@ -66,50 +62,50 @@ export default ({
   imageRounded = true,
   imageBorder = false,
   imageShadow = false,
-  showDecoratorBlob = false,
   textOnLeft = true,
 }) => {
   return (
-    <Container>
-      <TwoColumn>
-        <ImageColumn>
-          <Image
-            src={imageSrc}
-            imageBorder={imageBorder}
-            imageShadow={imageShadow}
-            imageRounded={imageRounded}
-          />
-          {showDecoratorBlob && <DecoratorBlob />}
-        </ImageColumn>
-        <TextColumn textOnLeft={textOnLeft}>
-          <TextContent>
-            <Subheading>{subheading}</Subheading>
-            <Heading>{heading}</Heading>
-            <Description>
-              {descriptionParagraphs.map((text, index) => (
-                <Paragraph key={index}>{text}</Paragraph>
-              ))}
-            </Description>
-          </TextContent>
-        </TextColumn>
-      </TwoColumn>
-      <div tw="mt-6 mb-16 flex flex-col items-center space-y-3">
-        <PrimaryButton
-          buttonRounded={buttonRounded}
-          as="a"
-          href={primaryButtonUrl}
-        >
-          {primaryButtonText}
-        </PrimaryButton>
-        <p tw="text-base sm:text-lg font-semibold text-gray-800">
-          Habla con un agente autorizado:{" "}
-        </p>
-        <p>
-          <a href="tel:8001234567" tw="underline">
-            (800) 123-4567
-          </a>
-        </p>
-      </div>
-    </Container>
+    <OuterContainer>
+      <Container>
+        <TwoColumn>
+          <ImageColumn>
+            <Image
+              src={imageSrc}
+              imageBorder={imageBorder}
+              imageShadow={imageShadow}
+              imageRounded={imageRounded}
+            />
+          </ImageColumn>
+          <TextColumn textOnLeft={textOnLeft}>
+            <TextContent>
+              <Subheading>{subheading}</Subheading>
+              <Heading>{heading}</Heading>
+              <Description>
+                {descriptionParagraphs.map((text, index) => (
+                  <Paragraph key={index}>{text}</Paragraph>
+                ))}
+              </Description>
+            </TextContent>
+          </TextColumn>
+        </TwoColumn>
+        <div tw="mt-4 mb-16 flex flex-col items-center space-y-3">
+          <PrimaryButton
+            buttonRounded={buttonRounded}
+            as="a"
+            href={primaryButtonUrl}
+          >
+            <span tw="whitespace-nowrap">{primaryButtonText}</span>
+          </PrimaryButton>
+          <p tw="text-base sm:text-lg font-semibold text-gray-800">
+            Habla con un agente autorizado:{" "}
+          </p>
+          <p>
+            <a href="tel:8001234567" tw="underline">
+              (800) 123-4567
+            </a>
+          </p>
+        </div>
+      </Container>
+    </OuterContainer>
   );
 };
