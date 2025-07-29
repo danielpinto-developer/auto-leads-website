@@ -1,10 +1,10 @@
 import React from "react";
 import tw from "twin.macro";
+import { useInView } from "react-intersection-observer";
 
 /* framer-motion and useInView here are used to animate the sections in when we reach them in the viewport
  */
 import { motion } from "framer-motion";
-import useInView from "helpers/useInView";
 
 const StyledDiv = tw.div`font-display min-h-screen text-secondary-500 p-8 overflow-hidden`;
 function AnimationReveal({ disabled, children }) {
@@ -17,7 +17,10 @@ function AnimationReveal({ disabled, children }) {
   const directions = ["left", "right"];
   const childrenWithAnimation = children.map((child, i) => {
     return (
-      <AnimatedSlideInComponent key={i} direction={directions[i % directions.length]}>
+      <AnimatedSlideInComponent
+        key={i}
+        direction={directions[i % directions.length]}
+      >
         {child}
       </AnimatedSlideInComponent>
     );
@@ -25,8 +28,15 @@ function AnimationReveal({ disabled, children }) {
   return <>{childrenWithAnimation}</>;
 }
 
-function AnimatedSlideInComponent({ direction = "left", offset = 30, children }) {
-  const [ref, inView] = useInView({ margin: `-${offset}px 0px 0px 0px`});
+function AnimatedSlideInComponent({
+  direction = "left",
+  offset = 30,
+  children,
+}) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: `0px 0px -${offset}% 0px`,
+  });
 
   const x = { target: "0%" };
 
@@ -37,11 +47,11 @@ function AnimatedSlideInComponent({ direction = "left", offset = 30, children })
     <div ref={ref}>
       <motion.section
         initial={{ x: x.initial }}
-        animate={{ 
-          x: inView && x.target,
-          transitionEnd:{
-            x: inView && 0
-          }
+        animate={{
+          x: inView ? x.target : x.initial,
+          transitionEnd: {
+            x: inView ? 0 : x.initial,
+          },
         }}
         transition={{ type: "spring", damping: 19 }}
       >
@@ -51,7 +61,7 @@ function AnimatedSlideInComponent({ direction = "left", offset = 30, children })
   );
 }
 
-export default props => (
+export default (props) => (
   <StyledDiv className="App">
     <AnimationReveal {...props} />
   </StyledDiv>
