@@ -14,7 +14,7 @@ import { ReactComponent as CheckboxIcon } from "feather-icons/dist/icons/check-c
 import { ReactComponent as QuotesLeftIconBase } from "images/quotes-l.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "images/dot-pattern.svg";
 
-const Row = tw.div`flex flex-col lg:flex-row justify-between items-center max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 pt-4 lg:pt-12`;
+const Row = tw.div`flex flex-col lg:flex-row justify-between items-center max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 pt-2 lg:pt-6`;
 const Column = tw.div``;
 const TextColumn = tw(
   Column
