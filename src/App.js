@@ -1,22 +1,22 @@
 import React from "react";
 import GlobalStyles from "styles/GlobalStyles";
-import SimpleHeader from "components/headers/light"; // 👈 import your header
-import Footer from "components/footers/FiveColumnWithInputForm"; // 👈 whatever your working footer is
+import SimpleHeader from "components/headers/light";
+import Footer from "components/footers/FiveColumnWithInputForm";
 import ServiceLandingPage from "./ServiceLandingPage";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <div style={{ backgroundColor: "#e5e7eb", margin: 0, padding: 0 }}>
+      <div className="bg-gray-200">
         <SimpleHeader />
       </div>
 
-      <main style={{ backgroundColor: "#fff" }}>
+      <main className="bg-white">
         <ServiceLandingPage />
       </main>
 
-      <div style={{ backgroundColor: "#e5e7eb", margin: 0, padding: 0 }}>
+      <div className="bg-gray-200">
         <Footer />
       </div>
     </>

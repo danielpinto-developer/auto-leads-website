@@ -20,7 +20,7 @@ const TextColumn = tw(
   Column
 )`mr-auto lg:mr-0 max-w-lg lg:max-w-xl xl:max-w-2xl`;
 const Heading = tw(SectionHeading)`
-  text-center text-primary-900 leading-snug text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl`;
+  text-center text-blue-500 leading-snug text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl`;
 const Description = tw(
   SectionDescription
 )`mt-4 text-center lg:text-base text-gray-700 max-w-lg`;

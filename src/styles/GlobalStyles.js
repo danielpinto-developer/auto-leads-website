@@ -7,8 +7,9 @@ const GlobalStyles = createGlobalStyle(
     html, body {
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
       width: 100%;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
     }
 
     *, *::before, *::after {
@@ -16,8 +17,8 @@ const GlobalStyles = createGlobalStyle(
     }
 
     #root {
+      width: 100%;
       overflow-x: hidden;
-      width: 100vw;
     }
 
     .ReactModal__Overlay {
